@@ -1,2 +1,13 @@
-# Covid-19-Forecast
-Implemented LSTM Model to forecasted ‘Active’ cases of COVID-19 for a country.
+# Covid-19 Forecast
+
+The project includes the Time-series analysis of COVID-19 ‘Active’ cases along with Forecasting of COVID-19 ‘Active’ cases for further 2 months. The dataset on which we implemented the model and algorithms consists of day-by-day records of Confirmed cases for each country for over 190+ countries. For some countries, data regarding their Provinces/States is also provided. Along with that, we also have the latitude and longitude values and each date from 22nd January 2020 till the current date is stored as a column.
+
+We first removed few columns such as Lat (Latitude) and Long (Longitude) and merged the Province/State and Country/Region to a single column in the format of “Country/Region, Province/State”. We then extracted the confirmed cases of a specific country – ‘India’ and calculated the ‘Active’ no of cases for each date and stored it in a column named ‘Active’. We then divided this into two parts, training set and testing set. Training set will consist of the Active cases from 22nd January 2020 till 31st March 2022 And testing set will consists of the Active cases from 1st April 2022 till the current date. And then we converted both training and testing set into the form of a list. For the Training set, we prepared the data in the form of batches of 20 dates cases at once as an array. Finally, we reshaped the Training set to 3-dimensional values.
+
+We used Long-Short Term Memory (LSTM) model for the implementation. After the training, we predicted the ‘Active’ cases of COVID-19 of ‘India’ country from 1st April 2022 till the current date, i.e., 18th April 2022. We plotted graphs regarding the visualizations and calculated the correlation % between Actual and Predicted ‘Active’ cases.
+
+We then Forecasted the ‘Active’ cases of COVID-19 of ‘India’ country from 19th April 2022 to 31st May 2022 on the basis of Actual cases as well as LSTM model predicted cases.
+
+Since the pre-processing method used for the Training set converts the training set in the form of array of size 20, such that for 20 days ‘Active’ case values, the LSTM model predicts the 21st day ‘Active’ case value and for 22nd day ‘Active’ case prediction value, last 19 days ‘Active’ case values with 21st day predicted ‘Active’ case value and so on turns out to be the stable amongst the different batch sizes. The model achieved an accuracy of 73% which in terms of COVID-19 ‘Active’ cases prediction is pretty good since it is not a ‘seasonal’/‘trend’ following data. Since LSTM is a model for the short-term memory which can last for a long period of time, it is ideal in using Time-Series analysis and prediction.
+
+Some of the reasons LSTM model provide good performance are: it maintains a separate cell state from the output values, use gates to control the flow of information, forgets gate to get rid of irrelevant info, store relevant information from current input and provides Backpropagation Through Time with uninterrupted gradient flow.
